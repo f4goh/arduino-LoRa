@@ -29,8 +29,8 @@
 String outgoing;              // outgoing message
 
 byte msgCount = 0;            // count of outgoing messages
-byte localAddress = 0xBB;     // address of this device
-byte destination = 0xFF;      // destination to send to
+byte localAddress = 0xaa;     // address of this device
+byte destination = 0xBB;      // destination to send to
 long lastSendTime = 0;        // last send time
 int interval = 2000;          // interval between sends
 
@@ -47,7 +47,7 @@ void setup() {
   LoRa.setPins(RADIO_NSS_PORT, RADIO_RESET_PORT, RADIO_DIO_0_PORT);
   
 
-  if (!LoRa.begin(915E6)) {             // initialize ratio at 915 MHz
+  if (!LoRa.begin(433E6)) {             // initialize ratio at 915 MHz
     Serial.println("LoRa init failed. Check your connections.");
     while (true);                       // if failed, do nothing
   }
@@ -56,13 +56,12 @@ void setup() {
 }
 
 void loop() {
-  if (millis() - lastSendTime > interval) {
-    String message = "HeLoRa World!";   // send a message
-    sendMessage(message);
-    Serial.println("Sending " + message);
-    lastSendTime = millis();            // timestamp the message
-    interval = random(2000) + 1000;    // 2-3 seconds
-  }
+if (Serial.available()>0)
+{
+  String message=Serial.readStringUntil(10);
+  sendMessage(message);
+  Serial.println("Sending " + message);
+}
 
   // parse for a packet, and call onReceive with the result:
   onReceive(LoRa.parsePacket());

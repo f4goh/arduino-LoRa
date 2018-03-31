@@ -1,5 +1,14 @@
 # Arduino LoRa
 
+For [B-L072Z-LRWAN1](http://www.st.com/en/evaluation-tools/b-l072z-lrwan1.html)
+with [STM32duino](https://github.com/stm32duino)
+
+remplace in
+C:\Users\name\AppData\Local\Arduino15\packages\STM32\hardware\stm32\1.1.1\variants\DISCO_L072CZ_LRWAN1
+file PeripheralPins.c
+
+
+
 [![Build Status](https://travis-ci.org/sandeepmistry/arduino-LoRa.svg?branch=master)](https://travis-ci.org/sandeepmistry/arduino-LoRa)
 
 An [Arduino](https://arduino.cc/) library for sending and receiving data using [LoRa](https://www.lora-alliance.org/) radios.
